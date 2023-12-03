@@ -2,3 +2,35 @@
 /.gradle/
 /build/
 /build/classes/kotlin/main/
+.idea
+
+# Don't commit input files
+src/main/kotlin/day1/input.txt
+src/main/kotlin/day2/input.txt
+src/main/kotlin/day3/input.txt
+src/main/kotlin/day4/input.txt
+src/main/kotlin/day5/input.txt
+src/main/kotlin/day6/input.txt
+src/main/kotlin/day7/input.txt
+src/main/kotlin/day8/input.txt
+src/main/kotlin/day9/input.txt
+src/main/kotlin/day10/input.txt
+src/main/kotlin/day11/input.txt
+src/main/kotlin/day12/input.txt
+src/main/kotlin/day13/input.txt
+src/main/kotlin/day14/input.txt
+src/main/kotlin/day15/input.txt
+src/main/kotlin/day16/input.txt
+src/main/kotlin/day17/input.txt
+src/main/kotlin/day18/input.txt
+src/main/kotlin/day19/input.txt
+src/main/kotlin/day20/input.txt
+src/main/kotlin/day21/input.txt
+src/main/kotlin/day22/input.txt
+src/main/kotlin/day23/input.txt
+src/main/kotlin/day24/input.txt
+src/main/kotlin/day25/input.txt
+
+# Gradle items
+gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/gradle-wrapper.properties
