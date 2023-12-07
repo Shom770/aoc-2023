@@ -19,7 +19,7 @@ object Day7Solution {
 
     fun partOne() : Int {
         var totalBid = 0
-        val hands = parseInput()
+        val hands = parseInput().map { it.bestCombination() }
         val sortedHands = hands.sortedWith(
             compareBy(
                 { it.findHandType().precedence },
@@ -40,8 +40,7 @@ object Day7Solution {
 
     fun partTwo() : Int {
         var totalBid = 0
-        val hands = parseInput()
-        println(hands[1].bestCombination())
+        val hands = parseInput().map { it.bestCombination() }
         val sortedHands = hands.sortedWith(
             compareBy(
                 { it.findHandType().precedence },
@@ -54,6 +53,9 @@ object Day7Solution {
         )
 
         for ((i, hand) in sortedHands.withIndex()) {
+            if (i == sortedHands.size - 100) {
+                println(hand)
+            }
             totalBid += (i + 1) * hand.bid
         }
 
