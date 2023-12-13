@@ -52,11 +52,8 @@ object Day7Solution {
             )
         )
 
-        for ((i, hand) in sortedHands.withIndex()) {
-            if (i == sortedHands.size - 100) {
-                println(hand)
-            }
-            totalBid += (i + 1) * hand.bid
+        for ((i, hand) in sortedHands.reversed().withIndex()) {
+            totalBid += (1000 - i) * hand.bid
         }
 
         return totalBid

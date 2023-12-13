@@ -1,5 +1,5 @@
-import day7.Day7Solution
+import day10.Day10Solution
 
 fun main() {
-    println(Day7Solution.partTwo())
+    println(Day10Solution.partOne())
 }
