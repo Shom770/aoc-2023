@@ -12,13 +12,22 @@ object Day10Solution {
     }
 
     private fun parseInput() : Grid {
-        return Grid(inputString.split("\r\n").map { it.toMutableList() }.toMutableList())
+        return Grid(inputString.split("\n").map { it.toMutableList() }.toMutableList())
     }
 
     fun partOne() : Int {
         val grid = parseInput()
         val (rowIndex, row) = grid.cells.withIndex().first { (_, it) -> it.indexOf('S') >= 0 }
         val sheepLocation = rowIndex to row.indexOf('S')
-        return grid.startAt(sheepLocation.second, sheepLocation.first)
+        return (grid.startAt(sheepLocation.second, sheepLocation.first).size + 1) / 2
+    }
+
+    fun partTwo(): Int {
+        val grid = parseInput()
+        val (rowIndex, row) = grid.cells.withIndex().first { (_, it) -> it.contains('S') }
+        val sheepLocation = rowIndex to row.indexOf('S')
+
+        val nodes = grid.startAt(sheepLocation.second, sheepLocation.first)
+        return grid.pointsInPolygon(grid.areaOfPolygon(nodes), nodes.size).toInt()
     }
 }

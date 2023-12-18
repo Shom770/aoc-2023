@@ -1,5 +1,7 @@
 package day10
 
+import kotlin.math.absoluteValue
+
 class Grid(val cells: MutableList<MutableList<Char>>) {
     private fun neighbors(x: Int, y: Int): List<Pair<Int, Int>> {
         val deltas = listOf(
@@ -49,13 +51,12 @@ class Grid(val cells: MutableList<MutableList<Char>>) {
         )
     }
 
-    fun startAt(x: Int, y: Int) : Int {
+    fun startAt(x: Int, y: Int): List<Pair<Int, Int>> {
         val startConnector = findConnectorAt(x, y)
         cells[y][x] = startConnector
 
         var currentPosition = connectorToPosition(x, y).last()
         val lastNodesVisited = mutableListOf(x to y, currentPosition)
-        var stepsTaken = 0
 
         while (x to y != currentPosition) {
             currentPosition = connectorToPosition(
@@ -64,9 +65,22 @@ class Grid(val cells: MutableList<MutableList<Char>>) {
                 lastNodesVisited.last().first, lastNodesVisited.last().second
             ).subtract(lastNodesVisited.toSet()).takeIf { it.isNotEmpty() }?.last() ?: (x to y)
             lastNodesVisited.add(currentPosition)
-            stepsTaken++
         }
 
-        return (stepsTaken + 1) / 2
+        return lastNodesVisited
+    }
+
+    // Shoelace's theorem
+    fun areaOfPolygon(nodes: List<Pair<Int, Int>>): Double {
+        return (0.5 * (nodes.zip(nodes.subList(1, nodes.size)).fold(0) {
+            acc, (pair1, pair2) ->  acc + pair1.first * pair2.second
+        } + nodes.last().first * nodes.first().second - nodes.zip(nodes.subList(1, nodes.size)).fold(0) {
+            acc, (pair1, pair2) ->  acc + pair2.first * pair1.second
+        } - nodes.first().first * nodes.last().second)).absoluteValue
+    }
+
+    // Pick's theorem
+    fun pointsInPolygon(areaOfPolygon: Double, boundaryPoints: Int): Double {
+        return areaOfPolygon - boundaryPoints / 2 + 1
     }
 }
